@@ -1,0 +1,10 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🏥 PharmaFlow Pre-commit Pharmaceutical Code Standards Check"
+echo "================================================="
+
+echo "📋 Running ESLint for pharmaceutical code standards..."
+npx lint-staged
+
+echo "✅ Pharmaceutical code standards validation complete!"

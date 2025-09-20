@@ -1,0 +1,322 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Pharmaceutical Premium Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* Base Pharmaceutical Styles */
+:root {
+  --pharmaceutical-primary: #1E3A8A;
+  --pharmaceutical-accent: #10B981;
+  --pharmaceutical-gold: #F59E0B;
+  --pharmaceutical-lavender: #8B5CF6;
+  --pharmaceutical-coral: #F97316;
+  
+  --dgda-primary: #1E40AF;
+  --dgda-secondary: #059669;
+  --dgda-warning: #F59E0B;
+  --dgda-success: #10B981;
+  
+  --trust-verified: #10B981;
+  --trust-pending: #F59E0B;
+  --trust-alert: #EF4444;
+  --trust-info: #3B82F6;
+  
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+}
+
+/* Pharmaceutical Glassmorphism Components */
+@layer components {
+  
+  /* Premium Glass Card */
+  .pharmaceutical-glass {
+    @apply backdrop-blur-pharmaceutical bg-white/10 border border-white/20 shadow-glass rounded-2xl;
+  }
+  
+  /* Trust Indicator Styles */
+  .trust-verified {
+    @apply bg-trust-gradient text-white shadow-trust;
+  }
+  
+  .trust-pending {
+    @apply bg-gradient-to-r from-yellow-500 to-orange-500 text-white;
+  }
+  
+  .trust-alert {
+    @apply bg-gradient-to-r from-red-500 to-red-600 text-white;
+  }
+  
+  /* DGDA Compliance Styles */
+  .dgda-form {
+    @apply pharmaceutical-glass p-8 space-y-6;
+  }
+  
+  .dgda-input {
+    @apply w-full px-4 py-3 bg-white/80 border border-white/30 rounded-xl 
+           focus:bg-white focus:border-primary-600 focus:ring-2 focus:ring-primary-500/20
+           transition-all duration-300 placeholder:text-gray-500;
+  }
+  
+  .dgda-button {
+    @apply px-6 py-3 bg-dgda-gradient text-white font-medium rounded-xl
+           shadow-dgda hover:shadow-lg transform hover:scale-[1.02]
+           transition-all duration-300 border border-white/20;
+  }
+  
+  /* Premium Pharmaceutical Cards */
+  .pharma-card {
+    @apply pharmaceutical-glass p-6 hover:shadow-pharmaceutical 
+           transform hover:scale-[1.02] transition-all duration-500
+           relative overflow-hidden;
+  }
+  
+  .pharma-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-white/5 to-transparent 
+           opacity-0 transition-opacity duration-300;
+  }
+  
+  .pharma-card:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Animated Trust Stepper */
+  .trust-stepper-step {
+    @apply relative flex items-center justify-center w-12 h-12 rounded-full
+           bg-white/20 border-2 border-white/30 text-white font-semibold
+           transition-all duration-500;
+  }
+  
+  .trust-stepper-step.active {
+    @apply bg-trust-gradient border-transparent scale-110 animate-dgda-verified;
+  }
+  
+  .trust-stepper-step.completed {
+    @apply bg-accent-500 border-accent-600;
+  }
+  
+  .trust-stepper-line {
+    @apply flex-1 h-0.5 bg-white/20 mx-4 relative overflow-hidden;
+  }
+  
+  .trust-stepper-line.active::after {
+    content: '';
+    @apply absolute inset-0 bg-trust-gradient animate-gradient-x;
+  }
+  
+  /* Interactive Pharmaceutical Navigation */
+  .pharma-nav-item {
+    @apply relative px-6 py-3 text-gray-700 font-medium rounded-xl
+           transition-all duration-300 hover:bg-white/50;
+  }
+  
+  .pharma-nav-item.active {
+    @apply bg-pharmaceutical-gradient text-white shadow-pharmaceutical;
+  }
+  
+  .pharma-nav-item::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary-600/0 to-primary-600/10
+           rounded-xl opacity-0 transition-opacity duration-300;
+  }
+  
+  .pharma-nav-item:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Premium Data Tables */
+  .pharma-table {
+    @apply pharmaceutical-glass overflow-hidden;
+  }
+  
+  .pharma-table th {
+    @apply px-6 py-4 bg-white/20 text-left font-semibold text-gray-800
+           border-b border-white/20;
+  }
+  
+  .pharma-table td {
+    @apply px-6 py-4 border-b border-white/10 transition-colors duration-200;
+  }
+  
+  .pharma-table tr:hover td {
+    @apply bg-white/30;
+  }
+  
+  /* Pharmaceutical Loading States */
+  .pharma-loading {
+    @apply relative overflow-hidden bg-gray-200 rounded-xl;
+  }
+  
+  .pharma-loading::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent
+           animate-shimmer;
+  }
+  
+  /* Premium Status Badges */
+  .status-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
+           backdrop-blur-sm border;
+  }
+  
+  .status-badge.approved {
+    @apply bg-green-100/80 text-green-800 border-green-200/50;
+  }
+  
+  .status-badge.pending {
+    @apply bg-yellow-100/80 text-yellow-800 border-yellow-200/50;
+  }
+  
+  .status-badge.rejected {
+    @apply bg-red-100/80 text-red-800 border-red-200/50;
+  }
+  
+  /* Pharmaceutical Modal */
+  .pharma-modal {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+  }
+  
+  .pharma-modal-backdrop {
+    @apply absolute inset-0 bg-black/50 backdrop-blur-sm;
+  }
+  
+  .pharma-modal-content {
+    @apply relative pharmaceutical-glass p-8 max-w-2xl w-full max-h-[90vh] overflow-auto;
+  }
+  
+  /* Premium Floating Action */
+  .pharma-fab {
+    @apply fixed bottom-8 right-8 w-16 h-16 bg-pharmaceutical-gradient
+           rounded-full shadow-pharmaceutical flex items-center justify-center
+           text-white hover:scale-110 transition-transform duration-300
+           border border-white/20;
+  }
+  
+  /* Trust Messaging */
+  .trust-message {
+    @apply pharmaceutical-glass p-4 border-l-4 border-trust-verified/50
+           bg-gradient-to-r from-green-50/80 to-transparent;
+  }
+  
+  /* DGDA Compliance Indicators */
+  .dgda-compliance-indicator {
+    @apply inline-flex items-center space-x-2 px-3 py-1 rounded-full
+           bg-dgda-gradient text-white text-sm font-medium
+           shadow-dgda border border-white/20;
+  }
+  
+  /* Premium Search */
+  .pharma-search {
+    @apply relative;
+  }
+  
+  .pharma-search input {
+    @apply w-full pl-12 pr-4 py-3 bg-white/80 border border-white/30 rounded-xl
+           focus:bg-white focus:border-primary-600 focus:ring-2 focus:ring-primary-500/20
+           transition-all duration-300;
+  }
+  
+  .pharma-search-icon {
+    @apply absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400;
+  }
+  
+  /* Pharmaceutical Dashboard Cards */
+  .dashboard-metric-card {
+    @apply pharmaceutical-glass p-6 relative overflow-hidden
+           hover:shadow-pharmaceutical transition-all duration-500;
+  }
+  
+  .dashboard-metric-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-1 bg-pharmaceutical-gradient;
+  }
+  
+  /* Mobile Responsive Glassmorphism */
+  @media (max-width: 768px) {
+    .pharmaceutical-glass {
+      @apply backdrop-blur-xl bg-white/20 border border-white/30;
+    }
+    
+    .pharma-card {
+      @apply p-4;
+    }
+    
+    .dgda-form {
+      @apply p-6;
+    }
+  }
+}
+
+/* Custom Pharmaceutical Utilities */
+@layer utilities {
+  .text-pharmaceutical {
+    color: var(--pharmaceutical-primary);
+  }
+  
+  .text-dgda {
+    color: var(--dgda-primary);
+  }
+  
+  .text-trust {
+    color: var(--trust-verified);
+  }
+  
+  .bg-pharmaceutical {
+    background-color: var(--pharmaceutical-primary);
+  }
+  
+  .bg-trust {
+    background-color: var(--trust-verified);
+  }
+  
+  .border-pharmaceutical {
+    border-color: var(--pharmaceutical-primary);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(20px);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  
+  .pharmaceutical-glow {
+    box-shadow: 0 0 30px rgba(30, 58, 138, 0.3);
+  }
+  
+  .trust-glow {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+  }
+  
+  .dgda-glow {
+    box-shadow: 0 0 30px rgba(30, 64, 175, 0.3);
+  }
+}
+
+/* Pharmaceutical Print Styles */
+@media print {
+  .pharmaceutical-glass,
+  .pharma-card,
+  .dgda-form {
+    @apply bg-white border border-gray-300 shadow-none;
+  }
+  
+  .trust-stepper-step,
+  .dgda-button,
+  .pharma-fab {
+    @apply bg-gray-100 text-gray-800 shadow-none;
+  }
+}

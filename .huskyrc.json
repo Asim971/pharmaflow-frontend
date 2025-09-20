@@ -1,0 +1,32 @@
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run type-check && npm run test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "src/components/pharmaceutical/**/*.{ts,tsx}": [
+      "eslint --fix --max-warnings 0",
+      "prettier --write",
+      "npm run test -- --findRelatedTests",
+      "git add"
+    ],
+    "src/services/compliance/**/*.{ts,tsx}": [
+      "eslint --fix --max-warnings 0",
+      "prettier --write",
+      "npm run test -- --findRelatedTests --coverage",
+      "git add"
+    ],
+    "**/*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

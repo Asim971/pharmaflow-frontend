@@ -1,0 +1,39 @@
+pharmaceutical_system:
+  project_name: "PharmaFlow"
+  description: "Comprehensive Pharmaceutical CRM with DGDA Compliance"
+  market: "Bangladesh"
+  regulatory_authority: "DGDA"
+  
+architecture:
+  pattern: "Microservices with Shared Context"
+  repositories:
+    frontend:
+      path: "submodules/pharmaflow-frontend"
+      completion: "30%"
+      technology: "React.js + TypeScript"
+      primary_focus: "DGDA Compliance UI Components"
+      dev_server: "http://localhost:5173"
+    backend:
+      path: "submodules/pharmaflow-backend"
+      completion: "95%"
+      technology: "Node.js + Express + TypeScript"
+      services_count: 15
+      primary_focus: "Pharmaceutical API Services"
+      api_base: "http://localhost:3000/api"
+    agents:
+      path: "submodules/pharmaflow-agents"
+      completion: "100%"
+      technology: "Agent Coordination System"
+      primary_focus: "Pharmaceutical Development Coordination"
+
+compliance:
+  regulatory_framework: "DGDA Bangladesh"
+  audit_trail: "Required for all pharmaceutical operations"
+  data_protection: "Healthcare-grade security standards"
+  submission_automation: "70% reduction in regulatory preparation time"
+
+integration:
+  api_contracts: "Shared TypeScript interfaces"
+  authentication: "JWT with pharmaceutical role-based access"
+  real_time: "WebSocket for live updates"
+  documentation: "OpenAPI specifications"
